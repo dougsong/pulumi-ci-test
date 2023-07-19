@@ -5,7 +5,7 @@ before:
   hooks:
     - make tfgen
 builds:
-  - binary: pulumi-resource-test
+  - binary: pulumi-resource-volcengine
     dir: provider
     env:
       - CGO_ENABLED=0
@@ -18,7 +18,7 @@ builds:
       - linux
     ldflags:
       - -X github.com/dougsong/pulumi-volcengine/provider/pkg/version.Version={{.Tag}}
-    main: ./cmd/pulumi-resource-xyz/
+    main: ./cmd/pulumi-resource-volcengine/
 changelog:
   skip: true
 release:
