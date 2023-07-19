@@ -7,6 +7,8 @@ before:
 builds:
   - binary: pulumi-resource-test
     dir: provider
+    env:
+      - CGO_ENABLED=0
     goarch:
       - amd64
       - arm64
@@ -14,13 +16,13 @@ builds:
       - darwin
       - windows
       - linux
-    ignore: []
     ldflags:
       - -X github.com/dougsong/pulumi-ci-test/provider/pkg/version.Version={{.Tag}}
     main: ./cmd/pulumi-resource-xyz/
-    sort: asc
-    use: git
+changelog:
+  skip: true
 release:
   disable: false
+  prerelease: auto
 snapshot:
-  name_template: "{{ .Tag }}-SNAPSHOT"
+  name_template: '{{ .Tag }}-SNAPSHOT'
