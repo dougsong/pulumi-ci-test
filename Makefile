@@ -1,8 +1,8 @@
 PROJECT_NAME := xyz Package
 
 SHELL            := /bin/bash
-PACK             := xyz
-ORG              := pulumi
+PACK             := volcengine
+ORG              := dougsong
 PROJECT          := github.com/${ORG}/pulumi-${PACK}
 NODE_MODULE_NAME := @pulumi/${PACK}
 TF_NAME          := ${PACK}

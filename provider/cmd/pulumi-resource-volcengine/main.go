@@ -19,8 +19,8 @@ package main
 import (
 	_ "embed"
 
-	xyz "github.com/dougsong/pulumi-ci-test/provider"
-	"github.com/dougsong/pulumi-ci-test/provider/pkg/version"
+	xyz "github.com/dougsong/pulumi-volcengine/provider"
+	"github.com/dougsong/pulumi-volcengine/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 )
 

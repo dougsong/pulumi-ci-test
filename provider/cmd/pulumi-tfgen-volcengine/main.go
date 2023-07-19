@@ -15,8 +15,8 @@
 package main
 
 import (
-	xyz "github.com/dougsong/pulumi-ci-test/provider"
-	"github.com/dougsong/pulumi-ci-test/provider/pkg/version"
+	xyz "github.com/dougsong/volcengine/provider"
+	"github.com/dougsong/volcengine/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 )
 

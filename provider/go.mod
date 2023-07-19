@@ -1,4 +1,4 @@
-module github.com/dougsong/pulumi-ci-test/provider
+module github.com/dougsong/pulumi-volcengine/provider
 
 go 1.18
 
