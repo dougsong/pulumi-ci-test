@@ -16,6 +16,7 @@ on:
       - 'v*'
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  PULUMI_SKIP_MISSING_MAPPING_ERROR: true
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
