@@ -37,6 +37,7 @@ const (
 	mainMod          = "index" // the xyz module
 	volcenginePkg    = "volcengine"
 	volcengineTlsMod = "tls"
+	volcengineEcsMod = "ecs"
 )
 
 func resourceType(mod string, res string) tokens.Type {
@@ -101,7 +102,8 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"volcengine_tls_host": {Tok: resourceType(volcengineTlsMod, "Host")},
+			"volcengine_tls_host":     {Tok: resourceType(volcengineTlsMod, "Host")},
+			"volcengine_ecs_instance": {Tok: resourceType(volcengineEcsMod, "Instance")},
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.

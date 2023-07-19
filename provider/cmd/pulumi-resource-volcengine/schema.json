@@ -97,6 +97,103 @@
             "secretKey"
         ]
     },
+    "types": {
+        "volcengine:ecs/InstanceDataVolume:InstanceDataVolume": {
+            "properties": {
+                "deleteWithInstance": {
+                    "type": "boolean",
+                    "willReplaceOnChanges": true
+                },
+                "size": {
+                    "type": "integer",
+                    "willReplaceOnChanges": true
+                },
+                "volumeType": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "type": "object",
+            "required": [
+                "size",
+                "volumeType"
+            ]
+        },
+        "volcengine:ecs/InstanceGpuDevice:InstanceGpuDevice": {
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "encryptedMemorySize": {
+                    "type": "integer"
+                },
+                "memorySize": {
+                    "type": "integer"
+                },
+                "productName": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "count",
+                        "encryptedMemorySize",
+                        "memorySize",
+                        "productName"
+                    ]
+                }
+            }
+        },
+        "volcengine:ecs/InstanceSecondaryNetworkInterface:InstanceSecondaryNetworkInterface": {
+            "properties": {
+                "primaryIpAddress": {
+                    "type": "string"
+                },
+                "securityGroupIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "willReplaceOnChanges": true
+                },
+                "subnetId": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "type": "object",
+            "required": [
+                "securityGroupIds",
+                "subnetId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "primaryIpAddress",
+                        "securityGroupIds",
+                        "subnetId"
+                    ]
+                }
+            }
+        },
+        "volcengine:ecs/InstanceTag:InstanceTag": {
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "value"
+            ]
+        }
+    },
     "provider": {
         "description": "The provider type for the volcengine package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
         "properties": {
@@ -187,6 +284,614 @@
         ]
     },
     "resources": {
+        "volcengine:ecs/instance:Instance": {
+            "properties": {
+                "autoRenew": {
+                    "type": "boolean",
+                    "description": "The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing\nresources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore\nchanges in fields.\n"
+                },
+                "autoRenewPeriod": {
+                    "type": "integer",
+                    "description": "The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing\nresources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore\nchanges in fields.\n"
+                },
+                "cpus": {
+                    "type": "integer",
+                    "description": "The number of ECS instance CPU cores.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The create time of ECS instance.\n"
+                },
+                "dataVolumes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/volcengine:ecs/InstanceDataVolume:InstanceDataVolume"
+                    },
+                    "description": "The data volumes collection of ECS instance.\n"
+                },
+                "deploymentSetId": {
+                    "type": "string",
+                    "description": "The ID of Ecs Deployment Set.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of ECS instance.\n"
+                },
+                "gpuDevices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/volcengine:ecs/InstanceGpuDevice:InstanceGpuDevice"
+                    },
+                    "description": "The GPU device info of Instance.\n"
+                },
+                "hostName": {
+                    "type": "string",
+                    "description": "The host name of ECS instance.\n"
+                },
+                "hpcClusterId": {
+                    "type": "string",
+                    "description": "The hpc cluster ID of ECS instance.\n"
+                },
+                "imageId": {
+                    "type": "string",
+                    "description": "The Image ID of ECS instance.\n"
+                },
+                "includeDataVolumes": {
+                    "type": "boolean",
+                    "description": "The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.\n"
+                },
+                "instanceChargeType": {
+                    "type": "string",
+                    "description": "The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.\n"
+                },
+                "instanceId": {
+                    "type": "string",
+                    "description": "The ID of ECS instance.\n"
+                },
+                "instanceName": {
+                    "type": "string",
+                    "description": "The name of ECS instance.\n"
+                },
+                "instanceType": {
+                    "type": "string",
+                    "description": "The instance type of ECS instance.\n"
+                },
+                "ipv6AddressCount": {
+                    "type": "integer",
+                    "description": "The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI.\nValid values: 1 to 10.\n"
+                },
+                "ipv6Addresses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10. You\ncannot specify both the ipv6_addresses and ipv6_address_count parameters.\n"
+                },
+                "isGpu": {
+                    "type": "boolean",
+                    "description": "The Flag of GPU instance.If the instance is GPU,The flag is true.\n"
+                },
+                "keepImageCredential": {
+                    "type": "boolean",
+                    "description": "Whether to keep the mirror settings. Only custom images and shared images support this field. When the value of this\nfield is true, the Password and KeyPairName cannot be specified. When importing resources, this attribute will not be\nimported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.\n"
+                },
+                "keyPairId": {
+                    "type": "string",
+                    "description": "The ssh key ID of ECS instance.\n"
+                },
+                "keyPairName": {
+                    "type": "string",
+                    "description": "The ssh key name of ECS instance.\n"
+                },
+                "memorySize": {
+                    "type": "integer",
+                    "description": "The memory size of ECS instance.\n"
+                },
+                "networkInterfaceId": {
+                    "type": "string",
+                    "description": "The ID of primary networkInterface.\n"
+                },
+                "osName": {
+                    "type": "string",
+                    "description": "The os name of ECS instance.\n"
+                },
+                "osType": {
+                    "type": "string",
+                    "description": "The os type of ECS instance.\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password of ECS instance.\n",
+                    "secret": true
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "The period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 12. Unit is Month.\n"
+                },
+                "primaryIpAddress": {
+                    "type": "string",
+                    "description": "The private ip address of primary networkInterface.\n"
+                },
+                "projectName": {
+                    "type": "string",
+                    "description": "The ProjectName of the ecs instance.\n"
+                },
+                "secondaryNetworkInterfaces": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/volcengine:ecs/InstanceSecondaryNetworkInterface:InstanceSecondaryNetworkInterface"
+                    },
+                    "description": "The secondary networkInterface detail collection of ECS instance.\n"
+                },
+                "securityEnhancementStrategy": {
+                    "type": "string",
+                    "description": "The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing\nresources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore\nchanges in fields.\n"
+                },
+                "securityGroupIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The security group ID set of primary networkInterface.\n"
+                },
+                "spotStrategy": {
+                    "type": "string",
+                    "description": "The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle\nbefore auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of ECS instance.\n"
+                },
+                "stoppedMode": {
+                    "type": "string",
+                    "description": "The stop mode of ECS instance.\n"
+                },
+                "subnetId": {
+                    "type": "string",
+                    "description": "The subnet ID of primary networkInterface.\n"
+                },
+                "systemVolumeId": {
+                    "type": "string",
+                    "description": "The ID of system volume.\n"
+                },
+                "systemVolumeSize": {
+                    "type": "integer",
+                    "description": "The size of system volume.\n"
+                },
+                "systemVolumeType": {
+                    "type": "string",
+                    "description": "The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/volcengine:ecs/InstanceTag:InstanceTag"
+                    },
+                    "description": "Tags.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The update time of ECS instance.\n"
+                },
+                "userData": {
+                    "type": "string",
+                    "description": "The user data of ECS instance, this field must be encrypted with base64.\n"
+                },
+                "vpcId": {
+                    "type": "string",
+                    "description": "The VPC ID of ECS instance.\n"
+                },
+                "zoneId": {
+                    "type": "string",
+                    "description": "The available zone ID of ECS instance.\n"
+                }
+            },
+            "required": [
+                "cpus",
+                "createdAt",
+                "description",
+                "gpuDevices",
+                "hostName",
+                "imageId",
+                "instanceChargeType",
+                "instanceId",
+                "instanceName",
+                "instanceType",
+                "ipv6AddressCount",
+                "ipv6Addresses",
+                "isGpu",
+                "keyPairId",
+                "keyPairName",
+                "memorySize",
+                "networkInterfaceId",
+                "osName",
+                "osType",
+                "primaryIpAddress",
+                "securityGroupIds",
+                "spotStrategy",
+                "status",
+                "stoppedMode",
+                "subnetId",
+                "systemVolumeId",
+                "systemVolumeSize",
+                "systemVolumeType",
+                "updatedAt",
+                "userData",
+                "vpcId",
+                "zoneId"
+            ],
+            "inputProperties": {
+                "autoRenew": {
+                    "type": "boolean",
+                    "description": "The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing\nresources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore\nchanges in fields.\n",
+                    "willReplaceOnChanges": true
+                },
+                "autoRenewPeriod": {
+                    "type": "integer",
+                    "description": "The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing\nresources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore\nchanges in fields.\n",
+                    "willReplaceOnChanges": true
+                },
+                "dataVolumes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/volcengine:ecs/InstanceDataVolume:InstanceDataVolume"
+                    },
+                    "description": "The data volumes collection of ECS instance.\n"
+                },
+                "deploymentSetId": {
+                    "type": "string",
+                    "description": "The ID of Ecs Deployment Set.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of ECS instance.\n"
+                },
+                "hostName": {
+                    "type": "string",
+                    "description": "The host name of ECS instance.\n",
+                    "willReplaceOnChanges": true
+                },
+                "hpcClusterId": {
+                    "type": "string",
+                    "description": "The hpc cluster ID of ECS instance.\n",
+                    "willReplaceOnChanges": true
+                },
+                "imageId": {
+                    "type": "string",
+                    "description": "The Image ID of ECS instance.\n"
+                },
+                "includeDataVolumes": {
+                    "type": "boolean",
+                    "description": "The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.\n"
+                },
+                "instanceChargeType": {
+                    "type": "string",
+                    "description": "The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.\n"
+                },
+                "instanceName": {
+                    "type": "string",
+                    "description": "The name of ECS instance.\n"
+                },
+                "instanceType": {
+                    "type": "string",
+                    "description": "The instance type of ECS instance.\n"
+                },
+                "ipv6AddressCount": {
+                    "type": "integer",
+                    "description": "The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI.\nValid values: 1 to 10.\n",
+                    "willReplaceOnChanges": true
+                },
+                "ipv6Addresses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10. You\ncannot specify both the ipv6_addresses and ipv6_address_count parameters.\n",
+                    "willReplaceOnChanges": true
+                },
+                "keepImageCredential": {
+                    "type": "boolean",
+                    "description": "Whether to keep the mirror settings. Only custom images and shared images support this field. When the value of this\nfield is true, the Password and KeyPairName cannot be specified. When importing resources, this attribute will not be\nimported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.\n"
+                },
+                "keyPairName": {
+                    "type": "string",
+                    "description": "The ssh key name of ECS instance.\n",
+                    "willReplaceOnChanges": true
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password of ECS instance.\n",
+                    "secret": true
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "The period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 12. Unit is Month.\n"
+                },
+                "projectName": {
+                    "type": "string",
+                    "description": "The ProjectName of the ecs instance.\n"
+                },
+                "secondaryNetworkInterfaces": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/volcengine:ecs/InstanceSecondaryNetworkInterface:InstanceSecondaryNetworkInterface"
+                    },
+                    "description": "The secondary networkInterface detail collection of ECS instance.\n"
+                },
+                "securityEnhancementStrategy": {
+                    "type": "string",
+                    "description": "The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing\nresources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore\nchanges in fields.\n",
+                    "willReplaceOnChanges": true
+                },
+                "securityGroupIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The security group ID set of primary networkInterface.\n"
+                },
+                "spotStrategy": {
+                    "type": "string",
+                    "description": "The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle\nbefore auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "subnetId": {
+                    "type": "string",
+                    "description": "The subnet ID of primary networkInterface.\n",
+                    "willReplaceOnChanges": true
+                },
+                "systemVolumeSize": {
+                    "type": "integer",
+                    "description": "The size of system volume.\n"
+                },
+                "systemVolumeType": {
+                    "type": "string",
+                    "description": "The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/volcengine:ecs/InstanceTag:InstanceTag"
+                    },
+                    "description": "Tags.\n"
+                },
+                "userData": {
+                    "type": "string",
+                    "description": "The user data of ECS instance, this field must be encrypted with base64.\n"
+                },
+                "zoneId": {
+                    "type": "string",
+                    "description": "The available zone ID of ECS instance.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "imageId",
+                "instanceType",
+                "securityGroupIds",
+                "subnetId",
+                "systemVolumeSize",
+                "systemVolumeType"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Instance resources.\n",
+                "properties": {
+                    "autoRenew": {
+                        "type": "boolean",
+                        "description": "The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing\nresources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore\nchanges in fields.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "autoRenewPeriod": {
+                        "type": "integer",
+                        "description": "The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing\nresources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore\nchanges in fields.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "cpus": {
+                        "type": "integer",
+                        "description": "The number of ECS instance CPU cores.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The create time of ECS instance.\n"
+                    },
+                    "dataVolumes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/volcengine:ecs/InstanceDataVolume:InstanceDataVolume"
+                        },
+                        "description": "The data volumes collection of ECS instance.\n"
+                    },
+                    "deploymentSetId": {
+                        "type": "string",
+                        "description": "The ID of Ecs Deployment Set.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of ECS instance.\n"
+                    },
+                    "gpuDevices": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/volcengine:ecs/InstanceGpuDevice:InstanceGpuDevice"
+                        },
+                        "description": "The GPU device info of Instance.\n"
+                    },
+                    "hostName": {
+                        "type": "string",
+                        "description": "The host name of ECS instance.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "hpcClusterId": {
+                        "type": "string",
+                        "description": "The hpc cluster ID of ECS instance.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "imageId": {
+                        "type": "string",
+                        "description": "The Image ID of ECS instance.\n"
+                    },
+                    "includeDataVolumes": {
+                        "type": "boolean",
+                        "description": "The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.\n"
+                    },
+                    "instanceChargeType": {
+                        "type": "string",
+                        "description": "The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.\n"
+                    },
+                    "instanceId": {
+                        "type": "string",
+                        "description": "The ID of ECS instance.\n"
+                    },
+                    "instanceName": {
+                        "type": "string",
+                        "description": "The name of ECS instance.\n"
+                    },
+                    "instanceType": {
+                        "type": "string",
+                        "description": "The instance type of ECS instance.\n"
+                    },
+                    "ipv6AddressCount": {
+                        "type": "integer",
+                        "description": "The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI.\nValid values: 1 to 10.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "ipv6Addresses": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10. You\ncannot specify both the ipv6_addresses and ipv6_address_count parameters.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "isGpu": {
+                        "type": "boolean",
+                        "description": "The Flag of GPU instance.If the instance is GPU,The flag is true.\n"
+                    },
+                    "keepImageCredential": {
+                        "type": "boolean",
+                        "description": "Whether to keep the mirror settings. Only custom images and shared images support this field. When the value of this\nfield is true, the Password and KeyPairName cannot be specified. When importing resources, this attribute will not be\nimported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.\n"
+                    },
+                    "keyPairId": {
+                        "type": "string",
+                        "description": "The ssh key ID of ECS instance.\n"
+                    },
+                    "keyPairName": {
+                        "type": "string",
+                        "description": "The ssh key name of ECS instance.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "memorySize": {
+                        "type": "integer",
+                        "description": "The memory size of ECS instance.\n"
+                    },
+                    "networkInterfaceId": {
+                        "type": "string",
+                        "description": "The ID of primary networkInterface.\n"
+                    },
+                    "osName": {
+                        "type": "string",
+                        "description": "The os name of ECS instance.\n"
+                    },
+                    "osType": {
+                        "type": "string",
+                        "description": "The os type of ECS instance.\n"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "The password of ECS instance.\n",
+                        "secret": true
+                    },
+                    "period": {
+                        "type": "integer",
+                        "description": "The period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 12. Unit is Month.\n"
+                    },
+                    "primaryIpAddress": {
+                        "type": "string",
+                        "description": "The private ip address of primary networkInterface.\n"
+                    },
+                    "projectName": {
+                        "type": "string",
+                        "description": "The ProjectName of the ecs instance.\n"
+                    },
+                    "secondaryNetworkInterfaces": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/volcengine:ecs/InstanceSecondaryNetworkInterface:InstanceSecondaryNetworkInterface"
+                        },
+                        "description": "The secondary networkInterface detail collection of ECS instance.\n"
+                    },
+                    "securityEnhancementStrategy": {
+                        "type": "string",
+                        "description": "The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing\nresources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore\nchanges in fields.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "securityGroupIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The security group ID set of primary networkInterface.\n"
+                    },
+                    "spotStrategy": {
+                        "type": "string",
+                        "description": "The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle\nbefore auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of ECS instance.\n"
+                    },
+                    "stoppedMode": {
+                        "type": "string",
+                        "description": "The stop mode of ECS instance.\n"
+                    },
+                    "subnetId": {
+                        "type": "string",
+                        "description": "The subnet ID of primary networkInterface.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "systemVolumeId": {
+                        "type": "string",
+                        "description": "The ID of system volume.\n"
+                    },
+                    "systemVolumeSize": {
+                        "type": "integer",
+                        "description": "The size of system volume.\n"
+                    },
+                    "systemVolumeType": {
+                        "type": "string",
+                        "description": "The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/volcengine:ecs/InstanceTag:InstanceTag"
+                        },
+                        "description": "Tags.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The update time of ECS instance.\n"
+                    },
+                    "userData": {
+                        "type": "string",
+                        "description": "The user data of ECS instance, this field must be encrypted with base64.\n"
+                    },
+                    "vpcId": {
+                        "type": "string",
+                        "description": "The VPC ID of ECS instance.\n"
+                    },
+                    "zoneId": {
+                        "type": "string",
+                        "description": "The available zone ID of ECS instance.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "volcengine:tls/host:Host": {
             "properties": {
                 "hostGroupId": {
