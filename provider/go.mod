@@ -1,6 +1,6 @@
 module github.com/dougsong/pulumi-volcengine/provider
 
-go 1.18
+go 1.17
 
 replace (
 	github.com/hashicorp/go-getter => github.com/hashicorp/go-getter v1.4.0
