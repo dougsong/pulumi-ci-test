@@ -17,6 +17,8 @@ on:
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   PULUMI_SKIP_MISSING_MAPPING_ERROR: true
+permissions:
+  contents: write
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
@@ -52,4 +54,4 @@ jobs:
         env:
           GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
           # GitHub sets this automatically
-          GITHUB_TOKEN: ${{ secrets.PULUMI_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
