@@ -2,9 +2,14 @@ module github.com/dougsong/pulumi-volcengine/provider
 
 go 1.18
 
-replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220824175045-450992f2f5b9
+replace (
+	github.com/hashicorp/go-getter => github.com/hashicorp/go-getter v1.4.0
+	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220505215311-795430389fa7
+	github.com/spf13/afero v1.9.5 => github.com/spf13/afero v1.2.2
+)
 
 require (
+	github.com/hashicorp/terraform-plugin-sdk v1.9.1
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.53.0
 	github.com/pulumi/pulumi/sdk/v3 v3.73.1-0.20230623071431-db579129f4c9
 	github.com/volcengine/terraform-provider-volcengine v0.0.87
@@ -130,10 +135,6 @@ require (
 	github.com/hashicorp/logutils v1.0.0 // indirect
 	github.com/hashicorp/terraform-config-inspect v0.0.0-20191115094559-17f92b0546e8 // indirect
 	github.com/hashicorp/terraform-json v0.14.0 // indirect
-	github.com/hashicorp/terraform-plugin-go v0.14.3 // indirect
-	github.com/hashicorp/terraform-plugin-log v0.7.0 // indirect
-	github.com/hashicorp/terraform-plugin-sdk v1.7.0 // indirect
-	github.com/hashicorp/terraform-plugin-sdk/v2 v2.24.1 // indirect
 	github.com/hashicorp/terraform-plugin-test v1.2.0 // indirect
 	github.com/hashicorp/terraform-svchost v0.0.0-20200729002733-f050f53b9734 // indirect
 	github.com/hashicorp/vault/api v1.8.2 // indirect
@@ -150,7 +151,6 @@ require (
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
 	github.com/keybase/go-crypto v0.0.0-20161004153544-93f5b35093ba // indirect
-	github.com/klauspost/compress v1.15.11 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/mattn/go-isatty v0.0.16 // indirect
@@ -208,10 +208,7 @@ require (
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
 	github.com/ulikunitz/xz v0.5.10 // indirect
-	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
-	github.com/vmihailenco/msgpack/v4 v4.3.12 // indirect
 	github.com/vmihailenco/msgpack/v5 v5.3.5 // indirect
-	github.com/vmihailenco/tagparser v0.1.2 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/volcengine/volc-sdk-golang v1.0.23 // indirect
 	github.com/volcengine/volcengine-go-sdk v1.0.75 // indirect

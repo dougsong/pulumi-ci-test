@@ -1,0 +1,239 @@
+{
+    "name": "volcengine",
+    "description": "A Pulumi package for creating and managing xyz cloud resources.",
+    "keywords": [
+        "pulumi",
+        "xyz",
+        "category/cloud"
+    ],
+    "homepage": "https://www.pulumi.com",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`volcengine` Terraform Provider](https://github.com/terraform-providers/terraform-provider-volcengine).",
+    "repository": "https://github.com/pulumi/pulumi-xyz",
+    "publisher": "Pulumi",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "language": {
+        "csharp": {
+            "compatibility": "tfbridge20",
+            "namespaces": null,
+            "packageReferences": {
+                "Pulumi": "3.*"
+            }
+        },
+        "go": {
+            "generateExtraInputTypes": true,
+            "generateResourceContainerTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-volcengine/sdk/go/volcengine"
+        },
+        "nodejs": {
+            "compatibility": "tfbridge20",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "disableUnionOutputTypes": true,
+            "packageDescription": "A Pulumi package for creating and managing xyz cloud resources.",
+            "packageName": "",
+            "pluginName": "",
+            "pluginVersion": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-volcengine)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-volcengine` repo](https://github.com/pulumi/pulumi-xyz/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-volcengine` repo](https://github.com/terraform-providers/terraform-provider-volcengine/issues).",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "compatibility": "tfbridge20",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-volcengine)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-volcengine` repo](https://github.com/pulumi/pulumi-xyz/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-volcengine` repo](https://github.com/terraform-providers/terraform-provider-volcengine/issues).",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            }
+        }
+    },
+    "config": {
+        "variables": {
+            "accessKey": {
+                "type": "string",
+                "description": "The Access Key for Volcengine Provider\n"
+            },
+            "customerEndpoints": {
+                "type": "string",
+                "description": "CUSTOMER ENDPOINTS for Volcengine Provider\n"
+            },
+            "customerHeaders": {
+                "type": "string",
+                "description": "CUSTOMER HEADERS for Volcengine Provider\n"
+            },
+            "disableSsl": {
+                "type": "boolean",
+                "description": "Disable SSL for Volcengine Provider\n"
+            },
+            "endpoint": {
+                "type": "string",
+                "description": "The Customer Endpoint for Volcengine Provider\n"
+            },
+            "proxyUrl": {
+                "type": "string",
+                "description": "PROXY URL for Volcengine Provider\n"
+            },
+            "region": {
+                "type": "string",
+                "description": "The Region for Volcengine Provider\n"
+            },
+            "secretKey": {
+                "type": "string",
+                "description": "The Secret Key for Volcengine Provider\n"
+            },
+            "sessionToken": {
+                "type": "string",
+                "description": "The Session Token for Volcengine Provider\n"
+            }
+        },
+        "defaults": [
+            "accessKey",
+            "region",
+            "secretKey"
+        ]
+    },
+    "provider": {
+        "description": "The provider type for the volcengine package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "accessKey": {
+                "type": "string",
+                "description": "The Access Key for Volcengine Provider\n"
+            },
+            "customerEndpoints": {
+                "type": "string",
+                "description": "CUSTOMER ENDPOINTS for Volcengine Provider\n"
+            },
+            "customerHeaders": {
+                "type": "string",
+                "description": "CUSTOMER HEADERS for Volcengine Provider\n"
+            },
+            "disableSsl": {
+                "type": "boolean",
+                "description": "Disable SSL for Volcengine Provider\n"
+            },
+            "endpoint": {
+                "type": "string",
+                "description": "The Customer Endpoint for Volcengine Provider\n"
+            },
+            "proxyUrl": {
+                "type": "string",
+                "description": "PROXY URL for Volcengine Provider\n"
+            },
+            "region": {
+                "type": "string",
+                "description": "The Region for Volcengine Provider\n"
+            },
+            "secretKey": {
+                "type": "string",
+                "description": "The Secret Key for Volcengine Provider\n"
+            },
+            "sessionToken": {
+                "type": "string",
+                "description": "The Session Token for Volcengine Provider\n"
+            }
+        },
+        "required": [
+            "accessKey",
+            "region",
+            "secretKey"
+        ],
+        "inputProperties": {
+            "accessKey": {
+                "type": "string",
+                "description": "The Access Key for Volcengine Provider\n"
+            },
+            "customerEndpoints": {
+                "type": "string",
+                "description": "CUSTOMER ENDPOINTS for Volcengine Provider\n"
+            },
+            "customerHeaders": {
+                "type": "string",
+                "description": "CUSTOMER HEADERS for Volcengine Provider\n"
+            },
+            "disableSsl": {
+                "type": "boolean",
+                "description": "Disable SSL for Volcengine Provider\n"
+            },
+            "endpoint": {
+                "type": "string",
+                "description": "The Customer Endpoint for Volcengine Provider\n"
+            },
+            "proxyUrl": {
+                "type": "string",
+                "description": "PROXY URL for Volcengine Provider\n"
+            },
+            "region": {
+                "type": "string",
+                "description": "The Region for Volcengine Provider\n"
+            },
+            "secretKey": {
+                "type": "string",
+                "description": "The Secret Key for Volcengine Provider\n"
+            },
+            "sessionToken": {
+                "type": "string",
+                "description": "The Session Token for Volcengine Provider\n"
+            }
+        },
+        "requiredInputs": [
+            "accessKey",
+            "region",
+            "secretKey"
+        ]
+    },
+    "resources": {
+        "volcengine:tls/host:Host": {
+            "properties": {
+                "hostGroupId": {
+                    "type": "string",
+                    "description": "The id of host group.\n"
+                },
+                "ip": {
+                    "type": "string",
+                    "description": "The ip address.\n"
+                }
+            },
+            "required": [
+                "hostGroupId",
+                "ip"
+            ],
+            "inputProperties": {
+                "hostGroupId": {
+                    "type": "string",
+                    "description": "The id of host group.\n",
+                    "willReplaceOnChanges": true
+                },
+                "ip": {
+                    "type": "string",
+                    "description": "The ip address.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "hostGroupId",
+                "ip"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Host resources.\n",
+                "properties": {
+                    "hostGroupId": {
+                        "type": "string",
+                        "description": "The id of host group.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "ip": {
+                        "type": "string",
+                        "description": "The ip address.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

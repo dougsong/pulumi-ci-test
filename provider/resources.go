@@ -16,12 +16,12 @@ package volcengine
 
 import (
 	"fmt"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"path/filepath"
 
 	"github.com/dougsong/pulumi-volcengine/provider/pkg/version"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
@@ -32,10 +32,16 @@ import (
 const (
 	// This variable controls the default name of the package in the package
 	// registries for nodejs and python:
-	mainPkg = "xyz"
+	mainPkg = "volcengine"
 	// modules:
-	mainMod = "index" // the xyz module
+	mainMod          = "index" // the xyz module
+	volcenginePkg    = "volcengine"
+	volcengineTlsMod = "tls"
 )
+
+func resourceType(mod string, res string) tokens.Type {
+	return tfbridge.MakeResource(volcenginePkg, mod, res)
+}
 
 // preConfigureCallback is called before the providerConfigure function of the underlying provider.
 // It should validate that the provider can be configured, and provide actionable errors in the case
@@ -53,7 +59,7 @@ func Provider() tfbridge.ProviderInfo {
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:    p,
-		Name: "xyz",
+		Name: "volcengine",
 		// DisplayName is a way to be able to change the casing of the provider
 		// name when being displayed on the Pulumi registry
 		DisplayName: "",
@@ -94,7 +100,8 @@ func Provider() tfbridge.ProviderInfo {
 			// },
 		},
 		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
+		Resources: map[string]*tfbridge.ResourceInfo{
+			"volcengine_tls_host": {Tok: resourceType(volcengineTlsMod, "Host")},
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.
@@ -152,9 +159,6 @@ func Provider() tfbridge.ProviderInfo {
 	// These are new API's that you may opt to use to automatically compute resource tokens,
 	// and apply auto aliasing for full backwards compatibility.
 	// For more information, please reference: https://pkg.go.dev/github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge#ProviderInfo.ComputeTokens
-	prov.MustComputeTokens(tokens.SingleModule("xyz_", mainMod,
-		tokens.MakeStandard(mainPkg)))
-	prov.SetAutonaming(255, "-")
 
 	return prov
 }

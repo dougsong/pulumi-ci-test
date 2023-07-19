@@ -15,12 +15,12 @@
 package main
 
 import (
-	xyz "github.com/dougsong/volcengine/provider"
-	"github.com/dougsong/volcengine/provider/pkg/version"
+	volcengine "github.com/dougsong/pulumi-volcengine/provider"
+	"github.com/dougsong/pulumi-volcengine/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 )
 
 func main() {
 	// Modify the path to point to the new provider
-	tfgen.Main("xyz", version.Version, xyz.Provider())
+	tfgen.Main("volcengine", version.Version, volcengine.Provider())
 }
