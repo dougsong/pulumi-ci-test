@@ -135,6 +135,7 @@ func Provider() tfbridge.ProviderInfo {
 			// section, or refer to the AWS provider. Delete this section if there are
 			// no overlay files.
 			//Overlay: &tfbridge.OverlayInfo{},
+			PackageName: "@zhenran.sz/pulumi-volcengine",
 		},
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
