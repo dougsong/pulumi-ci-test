@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Volcengine.Tls
+namespace ZhenRan.PulumiPackage.Volcengine.Tls
 {
     [VolcengineResourceType("volcengine:tls/host:Host")]
     public partial class Host : global::Pulumi.CustomResource

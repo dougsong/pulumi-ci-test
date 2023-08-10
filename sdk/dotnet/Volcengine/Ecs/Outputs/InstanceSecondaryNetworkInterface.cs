@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Volcengine.Ecs.Outputs
+namespace ZhenRan.PulumiPackage.Volcengine.Ecs.Outputs
 {
 
     [OutputType]

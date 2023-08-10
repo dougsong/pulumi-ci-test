@@ -16,8 +16,9 @@ package volcengine
 
 import (
 	"fmt"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"path/filepath"
+
+	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
 	"github.com/dougsong/pulumi-volcengine/provider/pkg/version"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
@@ -156,6 +157,7 @@ func Provider() tfbridge.ProviderInfo {
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
+			RootNamespace: "ZhenRan.PulumiPackage",
 		},
 	}
 

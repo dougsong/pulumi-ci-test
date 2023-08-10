@@ -6,11 +6,12 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Volcengine.Ecs.Inputs
+namespace ZhenRan.PulumiPackage.Volcengine.Ecs.Inputs
 {
 
-    public sealed class InstanceTagGetArgs : global::Pulumi.ResourceArgs
+    public sealed class InstanceTagArgs : global::Pulumi.ResourceArgs
     {
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
@@ -18,9 +19,9 @@ namespace Pulumi.Volcengine.Ecs.Inputs
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 
-        public InstanceTagGetArgs()
+        public InstanceTagArgs()
         {
         }
-        public static new InstanceTagGetArgs Empty => new InstanceTagGetArgs();
+        public static new InstanceTagArgs Empty => new InstanceTagArgs();
     }
 }

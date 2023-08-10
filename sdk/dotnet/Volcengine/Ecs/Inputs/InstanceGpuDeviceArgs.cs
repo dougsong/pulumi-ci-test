@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Volcengine.Ecs.Inputs
+namespace ZhenRan.PulumiPackage.Volcengine.Ecs.Inputs
 {
 
     public sealed class InstanceGpuDeviceArgs : global::Pulumi.ResourceArgs

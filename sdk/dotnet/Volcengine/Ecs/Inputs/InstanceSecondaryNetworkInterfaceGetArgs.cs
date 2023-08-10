@@ -6,11 +6,12 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Volcengine.Ecs.Inputs
+namespace ZhenRan.PulumiPackage.Volcengine.Ecs.Inputs
 {
 
-    public sealed class InstanceSecondaryNetworkInterfaceArgs : global::Pulumi.ResourceArgs
+    public sealed class InstanceSecondaryNetworkInterfaceGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("primaryIpAddress")]
         public Input<string>? PrimaryIpAddress { get; set; }
@@ -26,9 +27,9 @@ namespace Pulumi.Volcengine.Ecs.Inputs
         [Input("subnetId", required: true)]
         public Input<string> SubnetId { get; set; } = null!;
 
-        public InstanceSecondaryNetworkInterfaceArgs()
+        public InstanceSecondaryNetworkInterfaceGetArgs()
         {
         }
-        public static new InstanceSecondaryNetworkInterfaceArgs Empty => new InstanceSecondaryNetworkInterfaceArgs();
+        public static new InstanceSecondaryNetworkInterfaceGetArgs Empty => new InstanceSecondaryNetworkInterfaceGetArgs();
     }
 }

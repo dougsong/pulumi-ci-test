@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Volcengine
+namespace ZhenRan.PulumiPackage.Volcengine
 {
     /// <summary>
     /// The provider type for the volcengine package. By default, resources use package-wide configuration

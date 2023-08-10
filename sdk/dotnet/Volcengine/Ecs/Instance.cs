@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Volcengine.Ecs
+namespace ZhenRan.PulumiPackage.Volcengine.Ecs
 {
     [VolcengineResourceType("volcengine:ecs/instance:Instance")]
     public partial class Instance : global::Pulumi.CustomResource

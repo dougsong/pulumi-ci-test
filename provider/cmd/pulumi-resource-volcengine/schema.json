@@ -20,7 +20,8 @@
             "namespaces": null,
             "packageReferences": {
                 "Pulumi": "3.*"
-            }
+            },
+            "rootNamespace": "ZhenRan.PulumiPackage"
         },
         "go": {
             "generateExtraInputTypes": true,
