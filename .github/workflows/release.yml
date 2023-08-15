@@ -42,6 +42,8 @@ jobs:
   publish_binary:
     runs-on: ubuntu-latest
     steps:
+      - run: >-
+          curl -H "Authorization: ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/rate_limit
       - name: Checkout
         uses: actions/checkout@v3
       - name: Unshallow
